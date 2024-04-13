@@ -12,6 +12,10 @@ export async function createOnRampTransaction(provider: string, amount: number) 
             message: "Unauthenticated request"
         }
     }
+    //this token should be real token which we get from out bank provider.
+    // cosnt token = await axios.get('https://api.hdfcbank.com/getToken' , {
+    //     amout: amount
+    // })
     const token = (Math.random() * 1000).toString();
     await prisma.onRampTransaction.create({
         data: {
