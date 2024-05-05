@@ -8,7 +8,7 @@ const DashboardCard = ({ title, value }) => {
                     <span className="text-sm font-medium text-gray-500">{title}</span>
                 </div>
                 <div className="mt-2 text-center">
-                    <p className="text-3xl font-semibold text-gray-900">{value}</p>
+                    <p className="text-3xl font-semibold text-gray-900">{value} ₹</p>
                 </div>
             </div>
         </div>
