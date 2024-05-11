@@ -58,7 +58,7 @@ const DashboardCard = ({ title, value, transactions }) => {
 
     return (
         <div>
-            <div className="max-w-xs mx-auto bg-white overflow-hidden shadow rounded-lg">
+            <div className="max-w-xs mx-auto bg-white overflow-hidden shadow rounded-lg w-full">
                 <div className="px-4 py-5 sm:p-6">
                     <div className="text-center">
                         <span className="text-xs font-medium text-gray-500">{title}</span>
@@ -68,9 +68,9 @@ const DashboardCard = ({ title, value, transactions }) => {
                     </div>
                 </div>
             </div>
-            <div className="mt-4">
-                <canvas id="transactionChart"></canvas>
-            </div>
+            {/* <div className="mt-4">
+                <canvas id="transactionChart" style={{ width: "100%" }}></canvas>
+            </div> */}
         </div>
     );
 };

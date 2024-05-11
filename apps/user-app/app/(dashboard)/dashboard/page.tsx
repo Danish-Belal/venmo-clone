@@ -17,7 +17,7 @@ export default async function() {
     return (
         <div>
          <div className="text-center text-2xl font-semibold mb-4 text-blue-500">Good morning, <span className="text-blue-500">{session.user.email}</span></div>
-        <div className="bg-gray-100 px-4 py-8">
+        <div className="bg-gray-100  ">
         <DashboardCard title="Portfolio Value " value={transactions.amount || 0}  transactions= {allTransactions}/>
         {/* <DashboardCard title="Portfolio Value " value={transactions.amount || 0}  /> */}
         {/* <DashboardCard title="User Balance" value={balance || 0} /> */}
