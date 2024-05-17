@@ -1,6 +1,5 @@
 "use client"
-import React, { useState, useEffect, useRef } from "react";
-import Chart from "chart.js/auto";
+
 
 const DashboardCard = ({ title, value, transactions }) => {
    
@@ -17,9 +16,7 @@ const DashboardCard = ({ title, value, transactions }) => {
                     </div>
                 </div>
             </div>
-            {/* <div className="mt-4">
-                <canvas id="transactionChart" style={{ width: "100%" }}></canvas>
-            </div> */}
+           
         </div>
     );
 };
