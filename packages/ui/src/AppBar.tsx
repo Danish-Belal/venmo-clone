@@ -18,7 +18,7 @@ export const Appbar = ({
         <div className="flex flex-col justify-center text-2xl font-semibold mb-4 text-blue-500 m-4">
             Venmo
         </div>
-        <div className="flex flex-col justify-center pt-2">
+        <div className="flex flex-col justify-center pt-2 bg-red-400">
             <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
         </div>
     </div>
