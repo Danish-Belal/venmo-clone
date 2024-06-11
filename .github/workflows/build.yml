@@ -24,7 +24,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: 100xdevs/web-app:latest  # Replace with your Docker Hub username and repository
+        tags: danish19092001/venmo-clone:latest  # Replace with your Docker Hub username and repository
 
     - name: Verify Pushed Image
-      run: docker pull 100xdevs/web-app:latest  # Replace with your Docker Hub username and repository
+      run: docker pull danish19092001/venmo-clone:latest  # Replace with your Docker Hub username and repository
