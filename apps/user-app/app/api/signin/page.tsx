@@ -21,7 +21,7 @@ export default function Login() {
       });
 
       if (result.error) {
-        setErrorMessage('Invalid username or password. Please try again.');
+        setErrorMessage('Invalid username or password. Please try again.');  //Error massage not displaying
       }
     } catch (error) {
       console.error('Failed to sign in:', error);
