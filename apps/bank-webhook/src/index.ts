@@ -19,33 +19,23 @@ app.post("/hdfcWebhook", async (req, res) => {
     };
 
     try {
-        const userId = Number(paymentInformation.userId);
-        const amount = Number(paymentInformation.amount);
-
-        let existingBalance = await db.balance.findFirst({
+        const existingBalance = await db.balance.findFirst({
             where: {
-                userId: userId,
+                userId: Number(paymentInformation.userId),
             },
         });
 
         if (!existingBalance) {
-            // Create a new balance record if it doesn't exist
-            existingBalance = await db.balance.create({
-                data: {
-                    userId: userId,
-                    amount: 0,
-                    locked: 0,
-                },
-            });
+            throw new Error("Balance not found for user");
         }
 
         const currentBalance = existingBalance.amount;
-        const updatedBalance = currentBalance + amount;
+        const updatedBalance = currentBalance + Number(paymentInformation.amount);
 
         await db.$transaction([
-            db.balance.update({
+            db.balance.updateMany({
                 where: {
-                    userId: userId,
+                    userId: Number(paymentInformation.userId),
                 },
                 data: {
                     amount: updatedBalance,
@@ -66,13 +56,10 @@ app.post("/hdfcWebhook", async (req, res) => {
         });
     } catch (e) {
         console.error(e);
-        res.status(500).json({
-            message: `Error while processing webhook`,
-            error: e.message,
+        res.status(411).json({
+            message: `Error while processing webhook`,e,
         });
     }
 });
 
-app.listen(3003, () => {
-    console.log("Server is running on port 3003");
-});
+app.listen(3003);
