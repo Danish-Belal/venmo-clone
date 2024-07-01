@@ -1,32 +1,34 @@
-
-"use client"
+"use client";
 import Head from 'next/head';
 import { useState } from 'react';
-import { signIn    } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = async (e:any) => {
-    e.preventcdDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
     try {
       const result = await signIn('credentials', {
+        // redirect: false,
         phone: username,
-        password
-        // redirect: true, // Prevent NextAuth from redirecting automatically
-        // callbackUrl: '/dashboard'
+        password: password,
       });
 
-      if (result.error) {
-        setErrorMessage('Invalid username or password. Please try again.');  //Error massage not displaying
+      if (result?.error) {
+        setErrorMessage('Invalid username or password. Please try again.');
+      } else {
+        window.location.href = "/dashboard";
       }
     } catch (error) {
       console.error('Failed to sign in:', error);
+      setErrorMessage('Failed to sign in. Please try again later.');
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <Head>
@@ -41,10 +43,10 @@ export default function Login() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                Username
+                Phone Number
               </label>
               <div className="mt-1">
                 <input
@@ -82,15 +84,13 @@ export default function Login() {
               </p>
             )}
 
-
             <div>
               <button
                 type="submit"
-                onClick={handleSubmit}
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Sign in
-              </button >
+              </button>
             </div>
           </form>
         </div>
