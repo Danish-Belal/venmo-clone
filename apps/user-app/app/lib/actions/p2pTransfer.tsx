@@ -28,15 +28,15 @@ export async function p2pTransfer(to: string, amount: number) {
   try {
     await prisma.$transaction(async (tx) => {
       // Ensure the sender has a balance record
-      await tx.balance.upsert({
-        where: { userId: Number(from) },
-        update: {}, // No update needed, just ensure the record exists
-        create: {
-          userId: Number(from),
-          amount: 0,
-          locked: 0 // or your default value
-        },
-      });
+      // await tx.balance.upsert({
+      //   where: { userId: Number(from) },
+      //   update: {}, // No update needed, just ensure the record exists
+      //   create: {
+      //     userId: Number(from),
+      //     amount: 0,
+      //     locked: 0 // or your default value
+      //   },
+      // });
 
       // Ensure the receiver has a balance record
       await tx.balance.upsert({
