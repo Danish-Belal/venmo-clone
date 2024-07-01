@@ -1,14 +1,14 @@
 import React, { useState, useEffect, use } from 'react';
-import { getOnRampTransactions } from '../transfer/page';
+// import { getOnRampTransactions } from '../transfer/page';
 import TransactionCard from '../../../components/TransactionCard';
 
 const TransactionPage = async () => {
-    const transactions = await getOnRampTransactions();
+    // const transactions = await getOnRampTransactions();
     
     return (
         <div className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-semibold mb-6">Transaction History</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {transactions.map(transaction => (
                     <div key={transaction.token} className="relative">
                         <div  className={`rounded-lg shadow-md p-6 ${getTransactionColor(transaction.status)}`}>
@@ -19,14 +19,14 @@ const TransactionPage = async () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
             
         </div>
     );
 };
 
 // Function to get appropriate background color based on transaction status
-const getTransactionColor = (status) => {
+const getTransactionColor = (status: any) => {
     switch (status) {
         case 'success':
             return 'bg-green-50'; // Greenish background for successful transactions

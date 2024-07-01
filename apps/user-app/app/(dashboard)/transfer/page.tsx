@@ -5,7 +5,7 @@ import { OnRampTransactions } from "../../../components/OnRampTransaction";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../app/lib/auth";
 
-export async function getBalance() {
+ async function getBalance() {
     const session = await getServerSession(authOptions);
     const balance = await prisma.balance.findFirst({
         where: {
@@ -18,7 +18,7 @@ export async function getBalance() {
     }
 }
 
-export async function getOnRampTransactions() {
+ async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
     const txns = await prisma.onRampTransaction.findMany({
         where: {

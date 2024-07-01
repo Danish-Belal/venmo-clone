@@ -1,7 +1,7 @@
 import { authOptions } from "../../lib/auth";
 import { getServerSession } from "next-auth";
 import DashboardCard from "../../../components/DashboardCard";
-import { getBalance, getOnRampTransactions } from "../transfer/page";
+// import { getBalance, getOnRampTransactions } from "../transfer/page";
 import dashboard from "../../../public/dashboardimg.png";
 
 function getGreeting() {
@@ -13,10 +13,10 @@ function getGreeting() {
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
-    const transactions = await getBalance();
-    const allTransactions = await getOnRampTransactions();
+    // const transactions = await getBalance();
+    // const allTransactions = await getOnRampTransactions();
    
-    console.log("All transactions", allTransactions);
+    // console.log("All transactions", allTransactions);
     const userName = session.user.name || "Venmo User";
     return (
         <div>
@@ -25,13 +25,13 @@ export default async function Dashboard() {
             </div>
             <div className="relative bg-gray-100">
                 <img src={dashboard.src} alt="Description of the image" className="w-full h-auto" />
-                <div className="absolute top-0 right-0 m-4">
+                {/* <div className="absolute top-0 right-0 m-4">
                     <DashboardCard 
                         title="Portfolio Value" 
                         value={transactions.amount || 0}  
                         transactions={allTransactions} 
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

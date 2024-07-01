@@ -1,6 +1,6 @@
 "use client";
 
-const DashboardCard = ({ title, value, transactions }) => {
+const DashboardCard = ({ title, value, transactions }:any) => {
     return (
         <div className="w-80 max-w-xs mx-auto bg-blue-100 overflow-hidden shadow-lg rounded-lg">
             <div className="px-6 py-8 sm:p-10">
