@@ -35,7 +35,14 @@ export default async function() {
                 {getGreeting()}, <span className="text-blue-500">{userName}</span>
             </div>
             <div className="relative bg-gray-100">
-                <Image src={dashboard.src} alt="Description of the image" className="w-full h-auto" />
+                {/* <Image src={dashboard.src} alt="Description of the image" className="w-full h-auto" /> */}
+                <Image 
+                    src={dashboard.src} 
+                    alt="Description of the image" 
+                    width={dashboard.width} // replace with actual width
+                    height={dashboard.height} // replace with actual height
+                    className="w-full h-auto" 
+                />
                 <div className="absolute top-0 right-0 m-4">
                     <DashboardCard
                         title="Portfolio Value"
