@@ -16,4 +16,4 @@ RUN cd packages/db && npx prisma generate && cd ../..
 # RUN npm run build --filter=./apps/bank-webhook
 RUN yarn run build
 
-CMD ["npm", "run", "start-user-app"]
+CMD ["yarn", "run", "start-user-app"]
