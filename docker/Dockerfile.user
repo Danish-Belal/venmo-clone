@@ -1,19 +1,34 @@
+# Use the official Node.js image as the base image
 FROM node:20.12.0-alpine3.19
 
+# Set the working directory
 WORKDIR /usr/src/app
 
+# Copy the package files first to leverage Docker cache
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
+# Install dependencies and clean up
+RUN npm install && \
+    npm cache clean --force && \
+    rm -rf /tmp/*
+
+# Copy the application files
 COPY apps ./apps
 COPY packages ./packages
 
-# Install dependencies
-RUN npm install
-# Can you add a script to the global package.json that does this?
-RUN cd packages/db && npx prisma generate && cd ../..
+# Set a default value for DATABASE_URL (optional)
+ARG DATABASE_URL="default_database_url"
 
-# Can you filter the build down to just one app?
-# RUN npm run build --filter=./apps/bank-webhook
+# Override the default value during build time (pass --build-arg DATABASE_URL=<actual_db_url> during build)
+ENV DATABASE_URL=$DATABASE_URL
+
+# Generate Prisma client and clean up
+RUN cd packages/db && npx prisma generate && \
+    cd /usr/src/app && \
+    rm -rf packages/db/node_modules
+
+# Build the entire application
 RUN npm run build
 
+# Specify the command to run the app
 CMD ["npm", "run", "start-user-app"]
