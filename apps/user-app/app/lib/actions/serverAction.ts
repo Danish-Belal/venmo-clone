@@ -5,6 +5,9 @@ import prisma from "@repo/db/client";
 export async function getBalance() {
     const session = await getServerSession(authOptions);
     if (!session) {
+        if (typeof window !== 'undefined') {
+            window.location.href = '/api/auth/signin';
+        }
         throw new Error("Unauthorized");
     }
 
@@ -23,6 +26,9 @@ export async function getBalance() {
 export async function getOnRampTransactions() {
     const session = await getServerSession(authOptions);
     if (!session) {
+        if (typeof window !== 'undefined') {
+            window.location.href = '/api/signin';
+        }
         throw new Error("Unauthorized");
     }
 
