@@ -17,11 +17,12 @@ async function fetchingBalance(){
     const balance = await getBalance();
     return balance.amount/100;
 }
-async function getuser(){
+async function getuser() {
     const session = await getServerSession(authOptions);
-    const userName = session.user.name || "Venmo User";
+    const userName = session?.user?.name || "Venmo User";
     return userName;
 }
+
 export default async function() {
 
     const balance = fetchingBalance();
