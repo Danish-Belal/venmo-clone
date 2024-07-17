@@ -1,81 +1,44 @@
-# Turborepo starter
+<h1>Venmo-clone (Payment Gateway, Monorepo Demonstration nextJs and Prisma)</h1>
+<p>This repository demonstrates a monorepo architecture with a new tech stack. As a monorepo, our root directory contains the following:</p>
+<ul>
+    <li><strong>apps folder</strong>: Contains our applications.</li>
+    <li><strong>packages folder</strong>: Contains shareable UI components.</li>
+</ul>
+<p>The UI components in the <code>packages</code> folder can be utilized across different applications. For more details on export and import in monorepos, please refer to the official documentation <a href="<provide link>">here</a>.</p>
 
-This is an official starter Turborepo.
+<h2>Applications</h2>
+<p>We have two applications in our <code>apps</code> folder:</p>
+<ol>
+    <li><strong>bank-webhook</strong> (Next.js project): This webhook application is used to initiate transactions on the bank server and store the acknowledgment for each transaction.</li>
+    <li><strong>user-app</strong> (Next.js project): Manages the entire user interface and functionality, including the dashboard, transactions, transfers, and P2P transfers.</li>
+</ol>
 
-## Using this example
+<h2>Packages</h2>
+<p>The <code>packages</code> folder handles UI components and database configurations:</p>
+<ul>
+    <li><strong>UI</strong>: Contains static UI components that can be shared between different applications. All UI components need to be exported from the <code>package.json</code> file.</li>
+    <li><strong>DB</strong>: Utilizes Prisma for schema management and NeonDB for data storage. It includes all necessary schemas and SQL configurations.</li>
+</ul>
 
-Run the following command:
+<h2>Setup</h2>
+<p>To set up the project, follow these steps:</p>
+<ol>
+    <li>Pull the Docker image:
+        <pre><code>docker pull danish19092001/venmo-clone:latest</code></pre>
+    </li>
+    <li>Configure the database:
+        <ul>
+            <li>Create a <code>.env</code> file in the <code>db</code> folder.</li>
+            <li>Add your NeonDB URL to the <code>DATABASE_URL</code> variable in the <code>.env</code> file.</li>
+        </ul>
+    </li>
+    <li>Migrate the schemas:
+        <pre><code>npx prisma migrate</code></pre>
+    </li>
+    <li>Run the project:
+        <pre><code>yarn run dev</code></pre>
+    </li>
+</ol>
 
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+<h2>Issues</h2>
+<p>If you encounter any issues, please email: <a href="mailto:danishexplore019@gmail.com">danishexplore019@gmail.com</a></p>
