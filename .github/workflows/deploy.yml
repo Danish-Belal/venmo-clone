@@ -31,3 +31,39 @@ jobs:
 
     - name: Verify Pushed Image
       run: docker pull danish19092001/venmo-clone:latest  # Replace with your Docker Hub username and repository
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}  Account ID 211125364604
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          sudo docker pull danish19092001/venmo-clone:latest
+          sudo docker stop user-app || true
+          sudo docker rm user-app || true
+          sudo docker run -d --name web-app -p 3005:3001 danish19092001/venmo-clone:latest
+          # server {
+          #         server_name userapp.100xdevs.com;
+
+          #         location / {
+          #             proxy_pass http://localhost:3005;
+          #             proxy_http_version 1.1;
+          #             proxy_set_header Upgrade $http_upgrade;
+          #             proxy_set_header Connection 'upgrade';
+          #             proxy_set_header Host $host;
+          #             proxy_cache_bypass $http_upgrade;
+
+
+          #                 # Basic Authentication
+          #                 auth_basic "Restricted Content";
+          #                 auth_basic_user_file /etc/nginx/.htpasswd;
+          #         }
+
+          #     listen 443 ssl; # managed by Certbot
+          #     ssl_certificate /etc/letsencrypt/live/userapp.100xdevs.com/fullchain.pem; # managed by Certbot
+          #     ssl_certificate_key /etc/letsencrypt/live/userapp.100xdevs.com/privkey.pem; # managed by Certbot
+          #     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+          #     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+          # }
