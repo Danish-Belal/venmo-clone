@@ -35,14 +35,14 @@ jobs:
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SSH_HOST }}  Account ID 211125364604
+        host: ${{ secrets.SSH_HOST }} 
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
           sudo docker pull danish19092001/venmo-clone:latest
-          sudo docker stop user-app || true
-          sudo docker rm user-app || true
-          sudo docker run -d --name web-app -p 3005:3001 danish19092001/venmo-clone:latest
+          sudo docker stop web-app || true
+          sudo docker rm web-app || true
+          sudo docker run -d --name web-app -p 3005:3000 danish19092001/venmo-clone:latest
           # server {
           #         server_name userapp.100xdevs.com;
 
