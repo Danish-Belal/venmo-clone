@@ -7,10 +7,10 @@ WORKDIR /usr/src/app
 # Copy the package files first to leverage Docker cache
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
-# Install dependencies and clean up
-RUN npm install && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
+# # Install dependencies and clean up
+# RUN npm install && \
+#     npm cache clean --force && \
+#     rm -rf /tmp/*
 
 # Copy the application files
 COPY apps ./apps
@@ -21,6 +21,8 @@ ARG DATABASE_URL="default_database_url"
 
 # Override the default value during build time (pass --build-arg DATABASE_URL=<actual_db_url> during build)
 ENV DATABASE_URL=$DATABASE_URL
+
+RUN npm install
 
 # Generate Prisma client and clean up
 RUN cd packages/db && npx prisma generate && \
