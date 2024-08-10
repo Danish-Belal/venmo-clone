@@ -36,7 +36,7 @@
         <pre><code>npx prisma migrate</code></pre>
     </li>
     <li>Run the project:
-        <pre><code>yarn run dev</code></pre>
+        <pre><code>yarn run dev </code></pre>
     </li>
 </ol>
 
