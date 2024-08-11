@@ -19,7 +19,9 @@ async function fetchingBalance(){
 }
 async function getuser() {
     const session = await getServerSession(authOptions);
-    const userName = session?.user?.name || "Venmo User";
+    console.log(session);
+    console.log("Session");
+    const userName = session?.user?.name || "Venmoer";
     return userName;
 }
 
