@@ -21,7 +21,7 @@ async function getuser() {
     const session = await getServerSession(authOptions);
     console.log(session);
     console.log("Session");
-    const userName = session?.user?.name || "Venmoer";
+    const userName = session?.user?.name || "Venmo User";
     return userName;
 }
 
