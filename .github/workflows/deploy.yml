@@ -42,12 +42,12 @@ jobs:
           sudo docker pull danish19092001/venmo-clone:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 danish19092001/venmo-clone:latest
+          sudo docker run -e DATABASE_URL ${{ secrets.DATABASE_URL }} --restart-always -d --name web-app -p 3005:3000 danish19092001/venmo-clone:latest
           # server {
-          #         server_name userapp.100xdevs.com;
+          #         server_name venmo.score-book.com;
 
           #         location / {
-          #             proxy_pass http://localhost:3005;
+          #             proxy_pass http://localhost:3001;
           #             proxy_http_version 1.1;
           #             proxy_set_header Upgrade $http_upgrade;
           #             proxy_set_header Connection 'upgrade';
