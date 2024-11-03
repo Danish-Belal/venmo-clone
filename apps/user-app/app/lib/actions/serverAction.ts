@@ -29,7 +29,8 @@ export async function getOnRampTransactions() {
         if (typeof window !== 'undefined') {
             window.location.href = '/api/signin';
         }
-        throw new Error("Unauthorized");
+        window.location.href = '/api/signin';
+        // throw new Error("Unauthorized");
     }
 
     const txns = await prisma.onRampTransaction.findMany({

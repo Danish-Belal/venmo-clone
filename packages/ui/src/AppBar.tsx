@@ -1,5 +1,7 @@
 import { Button } from "./button";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 interface AppbarProps {
   user?: {
@@ -15,13 +17,14 @@ export const Appbar = ({
   onSignout
 }: AppbarProps) => {
 
-  const handleLogout = () => {
-    onSignout();
+  const handleLogout = async() => {
+    await onSignout();
+    window.location.href = '/api/signin'
   };
 
   return (
     <div className="flex justify-between border-b px-4">
-      <Link href={user ? "/dashboard" : "/api/signin"} passHref>
+      <Link href={user ? "/dashboard" : "/api/auth/signin"} passHref>
         <Button onClick={()=>{}} className="flex flex-col justify-center text-2xl font-semibold mb-4 text-blue-500 m-4">
           Venmo
         </Button>

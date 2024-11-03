@@ -2,23 +2,27 @@ import { getOnRampTransactions } from '../../lib/actions/serverAction';
 
 export default async function() {
     const transactions = await getOnRampTransactions();
+
     
     return (
         <div className="container mx-auto px-4 py-8">
             <h2 className="text-3xl font-semibold mb-6">Transaction History</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {transactions.map(transaction => (
-                    <div key={transaction.token} className="relative">
-                        <div  className={`rounded-lg shadow-md p-6 ${getTransactionColor(transaction.status)}`}>
-                            <h3 className="text-lg font-semibold mb-2">Date: {getTimeinUTC(transaction.time)}</h3>
-                            <p className="text-gray-600 mb-4">Status: {transaction.status}</p>
-                            <p className="text-gray-600 mb-4">Provider: {transaction.provider}</p>
-                            <p className="text-gray-600 mb-4">Amount: {transaction.amount}</p>
+            {transactions && transactions.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {transactions.map(transaction => (
+                        <div key={transaction.token} className="relative">
+                            <div className={`rounded-lg shadow-md p-6 ${getTransactionColor(transaction.status)}`}>
+                                <h3 className="text-lg font-semibold mb-2">Date: {getTimeinUTC(transaction.time)}</h3>
+                                <p className="text-gray-600 mb-4">Status: {transaction.status}</p>
+                                <p className="text-gray-600 mb-4">Provider: {transaction.provider}</p>
+                                <p className="text-gray-600 mb-4">Amount: {transaction.amount}</p>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </div>
-            
+                    ))}
+                </div>
+            ) : (
+                <div className='text-2xl font-semibold mb-3'>No Transaction Found.</div>
+            )}
         </div>
     );
 };
